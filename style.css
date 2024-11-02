@@ -1,0 +1,190 @@
+/* Variables de couleur */
+:root {
+  --bg-color: #F3F2EF;
+  --primary-color: #F8BA4D;
+  --text-color: #524845;
+  --accent-color: #050303;
+}
+
+/* Styles de base */
+body {
+  background-color: var(--bg-color);
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.app-container {
+  background-color: white;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre */
+h1 {
+  color: var(--accent-color);
+  text-align: center;
+}
+
+/* Input de tâche */
+.task-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.task-input input[type="text"],
+.task-input input[type="date"],
+.task-input select {
+  padding: 10px;
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.task-input button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.task-input button:hover {
+  background-color: var(--accent-color);
+}
+
+/* Filtrage et recherche */
+.filter-options, .task-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filter-options button {
+  background-color: var(--text-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.filter-options button:hover {
+  background-color: var(--accent-color);
+}
+
+.task-search input[type="text"] {
+  padding: 8px;
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  width: 100%;
+}
+
+/* Liste des tâches */
+#taskList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.task.completed {
+  background-color: #D3D3D3;
+  text-decoration: line-through;
+}
+
+.task-actions button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.task-actions button:hover {
+  color: var(--accent-color);
+}
+
+/* Animation pour l'ajout et la suppression de tâches */
+.task.added {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.task.removed {
+  animation: fadeOut 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: scale(0.9);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+      opacity: 1;
+      transform: scale(1);
+  }
+  to {
+      opacity: 0;
+      transform: scale(0.9);
+  }
+}
+
+/* Compteur de tâches */
+.task-counter {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Adaptation pour petits écrans */
+@media (max-width: 500px) {
+  .app-container {
+      padding: 15px;
+      width: 100%;
+  }
+
+  .task-input, .filter-options, .task-search {
+      flex-direction: column;
+  }
+
+  .filter-options button, .task-input button {
+      width: 100%;
+  }
+}
