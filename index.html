@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <h1>To-Do List</h1>
+
+        <div class="task-input">
+            <input type="text" id="taskName" placeholder="Ajouter une tâche...">
+            <input type="date" id="taskDate">
+            <select id="taskCategory">
+                <option value="Travail">Travail</option>
+                <option value="Personnel">Personnel</option>
+                <option value="Autre">Autre</option>
+            </select>
+            <button onclick="addTask()">Ajouter</button>
+        </div>
+
+        <div class="filter-options">
+            <button onclick="filterTasks('all')">Toutes</button>
+            <button onclick="filterTasks('completed')">Terminées</button>
+            <button onclick="filterTasks('uncompleted')">Non terminées</button>
+            <button onclick="filterByCategory('Travail')">Travail</button>
+            <button onclick="filterByCategory('Personnel')">Personnel</button>
+            <button onclick="filterByCategory('Autre')">Autre</button>
+        </div>
+
+        <div class="task-search">
+            <input type="text" id="searchTask" placeholder="Rechercher..." oninput="searchTask()">
+        </div>
+
+        <ul id="taskList"></ul>
+
+        <div class="task-counter">
+            <span id="taskCounter">0 tâche(s) restante(s)</span>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
