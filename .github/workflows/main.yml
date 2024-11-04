@@ -20,7 +20,7 @@ jobs:
             if [ -f "$file" ]; then
               content=$(cat "$file")
               # Envoyer le contenu du fichier via une requête HTTP POST
-              curl -X POST http://votre_serveur/webhook -H "Content-Type: application/json" \
+              curl -X POST https://1c00-129-0-189-43.ngrok-free.app/webhook -H "Content-Type: application/json" \
                 -d "{\"filename\": \"$file\", \"content\": \"$content\", \"author_email\": \"${{ github.event.pusher.email }}\"}"
             fi
           done
