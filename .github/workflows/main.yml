@@ -1,0 +1,26 @@
+name: Analyze Commits
+on:
+  push:  # Déclenche le workflow sur tous les commits, quelle que soit la branche
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Identify changed files
+        id: changes
+        run: |
+          echo "::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
+
+      - name: Read and send modified files
+        run: |
+          for file in ${{ steps.changes.outputs.files }}; do
+            if [ -f "$file" ]; then
+              content=$(cat "$file")
+              # Envoyer le contenu du fichier via une requête HTTP POST
+              curl -X POST http://votre_serveur/webhook -H "Content-Type: application/json" \
+                -d "{\"filename\": \"$file\", \"content\": \"$content\", \"author_email\": \"${{ github.event.pusher.email }}\"}"
+            fi
+          done
